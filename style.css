@@ -5,11 +5,7 @@
 
     General styling
 
-    Board
     
-    Cells
-
-    End game message
 
 ============================================================================== */
 
@@ -22,122 +18,56 @@
     margin: 0;
     padding: 0;
 }
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+}
 
 /* =========================================================================================
     Custom properties
 ========================================================================================= */
 :root {
-    --cell-size: 150px;
-    --x-size: calc(var(--cell-size) * 0.8);
-    --o-size: calc(var(--cell-size) * 0.75);
+    
 }
 
 /* =========================================================================================
-    Board
+    Board_game
 ========================================================================================= */
-#board {
-    background: rgb(60, 60, 60);
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: center;
-    align-content: center;
-
-    justify-items: center;
-    align-items: center;
-}
-.board.x .cell:not(.x):not(.o):hover {      /* Selector => :not() */
-    content: '';
-    background-image: url(images/cross01.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: var(--x-size);
-    opacity: 0.5;
-}
-.board.o .cell:not(.x):not(.o):hover {      /* Selector => :not() */
-    content: '';
-    background-image: url(images/circle04.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: var(--o-size);
-    opacity: 0.5;
+#board_game {
+    outline: 1px solid black;
+    /* padding: 0.5rem; */
+    width: 700px;
+    height: 600px;
+    position: absolute;
+    top: 15vh;
+    left: 50%;
+    transform: translate(-50%);
+    background: rgb(1, 95, 245);
 }
 
 /* =========================================================================================
-    Cells
+    Table
 ========================================================================================= */
-.cell {
-    border: 3px solid rgb(60, 60, 60);
+table {
+    outline: 1px solid red;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    border-spacing: 0.5rem;
+}
+
+/* =========================================================================================
+    Slots
+========================================================================================= */
+.slot {
+    border: 3px solid rgb(0, 65, 170);
+    border-radius: 50%;
     background: white;
-    width: var(--cell-size);
-    height: var(--cell-size);
+    box-shadow: 1px 1px 2px 1px rgb(0, 65, 170);
 }
-.cell:hover {
-    cursor: pointer;
-}
-.cell.x:hover, 
-.cell.o:hover {
-    cursor: not-allowed;
-}
-
-.cell.x {
-    background-image: url(images/cross01.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: var(--x-size);
-}
-
-.cell.o {
-    background-image: url(images/circle04.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: var(--o-size);
-}
-
-/* =========================================================================================
-    End game message
-========================================================================================= */
-#end_game_window {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-#end_game_window.show {
-    display: flex;
-}
-
-#end_game_result {
-    color: white;
-    font-size: 5rem;
-}
-
-#play_again_btn {
-    all: unset;
-    color: white;
-    font-size: 3rem;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-
-    cursor: pointer;;
-    border: 1px solid white;
-    border-radius: 999px;
-}
-#play_again_btn:hover, 
-#play_again_btn:focus {
-    /* transform: scale(1.05); */
-    background: white;
-    color: rgba(0, 0, 0, 0.9);
-}
-#play_again_btn:active {
-    transform: translateY(3px) scale(0.97);
+td {
+    
 }
 
 

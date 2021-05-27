@@ -105,6 +105,7 @@ const checkDiagonalToLeft = () => {
 
 const checkDraw = () => {
     let fullSlot = [];
+    
     for (let i = 0; i < tableCell.length; i++) {
         if (tableCell[i].style.backgroundColor !== "white") {
             fullSlot.push(tableCell[i]);
@@ -126,34 +127,37 @@ const changeColor = (e) => {
     for (let i = 5; i > -1; i--) {       // i=5 because we start at the table bottom.
         if (tableRow[i].children[column].style.backgroundColor == "white") {
             row.push(tableRow[i].children[column]);
-            if (currentPlayer === 1) {
+            if (currentPlayer === 1) {  // if Player 1 / Red
                 row[0].style.backgroundColor = player1Color;
                 row[0].classList.add(player1Color);
-                if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
+
+                if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {  // Victory
                     playerTurn.textContent = `${player1} WINS!`;
                     playerTurn.style.color = player1Color;
                     playerColorSample.style.backgroundColor = player1Color;
                     return (alert(`${player1} WINS!`));
-                } else if (checkDraw()) {
+                } else if (checkDraw()) {   // Draw
                     playerTurn.textContent = "It's a DRAW...";
                     return (alert("DRAW!"));
-                } else {
+                } else {    // Next player
                     playerTurn.textContent = `${player2}'s turn.`;
                     playerColorSample.style.backgroundColor = player2Color;
                     return currentPlayer = 2;
                 }
-            } else {
+            } 
+            else {    // if Player 2 / Yellow
                 row[0].style.backgroundColor = player2Color;
                 row[0].classList.add(player2Color)
-                if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
+
+                if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {  // Victory
                     playerTurn.textContent = `${player2} WINS!`;
                     playerTurn.style.color = player2Color;
                     playerColorSample.style.backgroundColor = player2Color;
                     return (alert(`${player2} WINS!`));
-                } else if (checkDraw()) {
+                } else if (checkDraw()) {   // Draw
                     playerTurn.textContent = "It's a DRAW...";
                     return (alert("DRAW!"));
-                } else {
+                } else {    // Next player
                     playerTurn.textContent = `${player1}'s turn.`;
                     playerColorSample.style.backgroundColor = player1Color;
                     return currentPlayer = 1;

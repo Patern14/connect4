@@ -128,6 +128,7 @@ const changeColor = (e) => {
             row.push(tableRow[i].children[column]);
             if (currentPlayer === 1) {
                 row[0].style.backgroundColor = player1Color;
+                row[0].classList.add(player1Color);
                 if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
                     playerTurn.textContent = `${player1} WINS!`;
                     playerTurn.style.color = player1Color;
@@ -143,6 +144,7 @@ const changeColor = (e) => {
                 }
             } else {
                 row[0].style.backgroundColor = player2Color;
+                row[0].classList.add(player2Color)
                 if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
                     playerTurn.textContent = `${player2} WINS!`;
                     playerTurn.style.color = player2Color;
@@ -174,6 +176,7 @@ resetGame.addEventListener("click", () => {
     console.log("Reset button CLICKED")
     tableSlot.forEach(slot => {
         slot.style.backgroundColor = "white";
+        slot.classList.remove(player1Color, player2Color);
     });
     playerTurn.style.color = "black";
     return (currentPlayer === 1 ? playerTurn.textContent = `${player1}'s turn.` : playerTurn.textContent = `${player2}'s turn.`,

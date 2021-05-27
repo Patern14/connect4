@@ -1,15 +1,27 @@
 console.log("App.js CONNECTED")
+/* ============================================================================
+    SUMMARY
 
-/* Selectors */
+        Selectors
 
+        Victory conditions
+
+        Swap turn and check victory
+
+        Reset game
+
+        Check clicked cell - can be disabled
+=============================================================================*/
+
+
+/* ============================================================================
+    Selectors
+=============================================================================*/
 var tableRow = document.getElementsByTagName("tr");
-console.log(tableRow)
 var tableCell = document.getElementsByTagName("td");
-console.log(tableCell)
-var tableSlot = document.querySelector(".slot");
-console.log(tableSlot)
+var tableSlot = document.querySelectorAll(".slot");
 const playerTurn = document.querySelector(".player_turn");
-console.log(playerTurn)
+const playerColorSample = document.querySelector(".player_color_sample");
 const resetGame = document.querySelector(".reset_game");
 
 while (!player1) {
@@ -25,17 +37,22 @@ while (!player2) {
 player2Color = "yellow";
 
 var currentPlayer = 1;
-//playerTurn.textContent = `${player1}'s turn`;
 playerTurn.textContent = `${player1}'s turn.`;
-console.log(playerTurn)
+playerColorSample.style.backgroundColor = player1Color;
 
+
+/* ============================================================================
+    Victory conditions
+=============================================================================*/
 const checkColor = (one, two, three, four) => {
     return (one === two && one === three && one === four && one !== "white");
 }
 
 const checkHorizontal = () => {
     for (let row = 0; row < tableRow.length; row++) {
+        //console.log("check horizontal Row: " + row)
         for (let col = 0; col < 4; col++) {
+            //console.log("check horizontal Col: " + col)
             if (checkColor( tableRow[row].children[col].style.backgroundColor, 
                             tableRow[row].children[col+1].style.backgroundColor, 
                             tableRow[row].children[col+2].style.backgroundColor, 
@@ -47,7 +64,9 @@ const checkHorizontal = () => {
 
 const checkVertical = () => {
     for (let col = 0; col < 7; col++) {
+        //console.log("check vertical Col: " + col)
         for (let row = 0; row < 3; row++) {
+            //console.log("check vertical Row: " + row)
             if (checkColor( tableRow[row].children[col].style.backgroundColor, 
                             tableRow[row+1].children[col].style.backgroundColor, 
                             tableRow[row+2].children[col].style.backgroundColor, 
@@ -58,7 +77,9 @@ const checkVertical = () => {
 }
 const checkDiagonalToRight = () => {
     for (let col = 0; col < 4; col++) {
+        //console.log("check diagonal right Col: " + col)
         for (row = 0; row < 3; row++) {
+            //console.log("check diagonal right Row: " + row)
             if (checkColor( tableRow[row].children[col].style.backgroundColor, 
                             tableRow[row+1].children[col+1].style.backgroundColor, 
                             tableRow[row+2].children[col+2].style.backgroundColor, 
@@ -70,7 +91,9 @@ const checkDiagonalToRight = () => {
 
 const checkDiagonalToLeft = () => {
     for (let col = 0; col < 4; col++) {
+        //console.log("check diagonal left Col: " + col)
         for (row = 5; row > 2; row--) {
+            //console.log("check diagonal left Row: " + row)
             if (checkColor( tableRow[row].children[col].style.backgroundColor, 
                             tableRow[row-1].children[col+1].style.backgroundColor, 
                             tableRow[row-2].children[col+2].style.backgroundColor, 
@@ -92,6 +115,10 @@ const checkDraw = () => {
     }
 }
 
+
+/* ============================================================================
+    Swap turn and check victory
+=============================================================================*/
 const changeColor = (e) => {
     let column = e.target.cellIndex;
     let row = [];
@@ -104,12 +131,14 @@ const changeColor = (e) => {
                 if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
                     playerTurn.textContent = `${player1} WINS!`;
                     playerTurn.style.color = player1Color;
+                    playerColorSample.style.backgroundColor = player1Color;
                     return (alert(`${player1} WINS!`));
                 } else if (checkDraw()) {
                     playerTurn.textContent = "It's a DRAW...";
                     return (alert("DRAW!"));
                 } else {
                     playerTurn.textContent = `${player2}'s turn.`;
+                    playerColorSample.style.backgroundColor = player2Color;
                     return currentPlayer = 2;
                 }
             } else {
@@ -117,12 +146,14 @@ const changeColor = (e) => {
                 if (checkHorizontal() || checkVertical() || checkDiagonalToRight() || checkDiagonalToLeft()) {
                     playerTurn.textContent = `${player2} WINS!`;
                     playerTurn.style.color = player2Color;
+                    playerColorSample.style.backgroundColor = player2Color;
                     return (alert(`${player2} WINS!`));
                 } else if (checkDraw()) {
                     playerTurn.textContent = "It's a DRAW...";
                     return (alert("DRAW!"));
                 } else {
                     playerTurn.textContent = `${player1}'s turn.`;
+                    playerColorSample.style.backgroundColor = player1Color;
                     return currentPlayer = 1;
                 }
             }
@@ -133,14 +164,30 @@ const changeColor = (e) => {
 Array.prototype.forEach.call(tableCell, (cell) => {
     cell.addEventListener("click", changeColor);
     cell.style.backgroundColor = "white";
+});
+
+
+/* ============================================================================
+    Reset game
+=============================================================================*/
+resetGame.addEventListener("click", () => {
+    console.log("Reset button CLICKED")
+    tableSlot.forEach(slot => {
+        slot.style.backgroundColor = "white";
+    });
+    playerTurn.style.color = "black";
+    return (currentPlayer === 1 ? playerTurn.textContent = `${player1}'s turn.` : playerTurn.textContent = `${player2}'s turn.`,
+    playerColorSample.style.backgroundColor = player.currentPlayer.Color
+    );
 })
 
-for (let i = 0; 1 < tableCell.length; i++) {     // Just to know what cell we click
+
+/* ============================================================================
+    Check clicked cell - can be disabled
+=============================================================================*/
+for (let i = 0; 1 < tableCell.length; i++) { 
     tableCell[i].addEventListener("click", (e) => {
         console.log("row: " + e.target.parentElement.rowIndex +", column: "+ e.target.cellIndex)
     })
 }
-
-
-
 

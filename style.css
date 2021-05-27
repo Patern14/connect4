@@ -1,12 +1,19 @@
 /* =============================================================================
     SUMMARY 
 
-    Custom properties
+        General styling
+        
+        Custom properties
 
-    General styling
+        Player_turn
+        
+        Board_game
 
-    
+        Table
 
+        Slots
+
+        Reset_game
 ============================================================================== */
 
 /* =========================================================================================
@@ -22,6 +29,9 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* =========================================================================================
@@ -30,12 +40,46 @@ body {
 :root {
     
 }
+
+/* =========================================================================================
+    Game_title
+========================================================================================= */
+#game_title {
+    text-align: center;
+    font-size: 2rem;
+}
+
 /* =========================================================================================
     Player_turn
 ========================================================================================= */
+#player_infos {
+    /* outline: 1px solid black; */
+    display: flex;
+    align-items: center;
+    margin: 2rem;
+}
+
 .player_turn {
-    border: 1px solid magenta;
+    /* border: 1px solid magenta; */
     padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.player_color_sample {
+    width: 2.5rem;
+    height: 2.5rem;
+    /* background: chartreuse; */
+    border: 2px solid black;
+    border-radius: 50%;
+    /* box-shadow: 1px 1px 2px 1px rgb(0, 0, 0), 
+                -1px -1px 2px 1px rgb(255, 255, 255),
+                inset 1px 1px 2px 1px rgb(0, 0, 0), 
+                inset -1px -1px 2px 1px rgb(255, 255, 255); */
+
+    /* box-shadow: 1px 1px 2px 1px rgb(0, 50, 140), 
+        -1px -1px 2px 1px rgb(110, 160, 240),
+        inset 1px 1px 2px 1px rgb(0, 50, 140), 
+        inset -1px -1px 2px 1px rgb(110, 160, 240); */
 }
 
 /* =========================================================================================
@@ -46,10 +90,10 @@ body {
     /* padding: 0.5rem; */
     width: 700px;
     height: 600px;
-    position: absolute;
+    /* position: absolute;
     top: 15vh;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%); */
     /* background: rgb(1, 95, 245); */
     background: linear-gradient(155deg, rgb(47, 124, 248) 0%, rgb(2, 85, 218) 100%);
 }
@@ -82,4 +126,25 @@ td {
     
 }
 
-
+/* =========================================================================================
+    Reset_game
+========================================================================================= */
+.reset_game {
+    all: unset;
+    margin: 3rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 2px rgb(54, 54, 54);
+}
+.reset_game:hover {
+    cursor: pointer;
+    background: rgb(54, 54, 54);
+    color: white;
+}
+.reset_game:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}

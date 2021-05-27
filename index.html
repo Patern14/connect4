@@ -12,9 +12,12 @@
 </head>
 
 <body>
-    <h1>Hello Connect4</h1>
+    <h1 id="game_title">Connect4</h1>
 
-    <h2 class="player_turn"></h2>
+    <div id="player_infos">
+        <h2 class="player_turn"></h2>
+        <div class="player_color_sample"></div>
+    </div>
 
     <div class="board_game" id="board_game">
         <table>
@@ -75,9 +78,9 @@
         </table>
     </div>
 
-    <div class="reset_game">
+    <button class="reset_game">
         Reset game
-    </div>
+    </button>
 
 </body>
 </html>

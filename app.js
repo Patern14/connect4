@@ -24,13 +24,13 @@ const playerTurn = document.querySelector(".player_turn");
 const playerColorSample = document.querySelector(".player_color_sample");
 const resetGame = document.querySelector(".reset_game");
 
-while (!player1) {
+while (!player1) {      // Prompt disabled by default
     //var player1 = prompt("Player 1: enter your name. You will be RED.")
     var player1 = "Player 1";
 }
 player1Color = "red";
 
-while (!player2) {
+while (!player2) {      // Prompt disabled by default
     //var player2 = prompt("Player 2: enter your name. You will be YELLOW.")
     var player2 = "Player 2"
 }
